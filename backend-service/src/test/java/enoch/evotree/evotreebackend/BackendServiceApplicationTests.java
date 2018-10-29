@@ -1,5 +1,6 @@
 package enoch.evotree.evotreebackend;
 
+import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 import enoch.evotree.evotreebackend.repository.NodeRepository;
@@ -57,7 +58,7 @@ public class BackendServiceApplicationTests {
 
     @Test
     public void shouldAbleToDeleteNodeAndCleanUp()
-        throws NoSuchNodeException {
+            throws CannotDeleteRootNodeException, NoSuchNodeException {
 
 	    Node parentNode = nodeService.createNode("ParentNode");
 	    Node childNode = nodeService.createChildNode(
