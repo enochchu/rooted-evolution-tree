@@ -9,6 +9,7 @@ import enoch.evotree.evotreebackend.service.constants.NodeConstant;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +63,11 @@ public class NodeServiceImpl implements NodeService {
         }
 
         return node.get();
+    }
+
+    @Override
+    public List<Node> getParentNodes() {
+        return nodeRepository.findAllByParentNodeId(NodeConstant.NO_NODE);
     }
 
     @Override

@@ -3,6 +3,8 @@ package enoch.evotree.evotreebackend.service;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public interface NodeService {
@@ -17,6 +19,8 @@ public interface NodeService {
     Node deleteNode(long id) throws NoSuchNodeException;
 
     Node fetchNode(long id);
+
+    List<Node> getParentNodes();
 
     Node updateNode(long id, String name) throws NoSuchNodeException;
 

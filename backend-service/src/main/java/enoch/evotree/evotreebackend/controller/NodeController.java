@@ -1,9 +1,13 @@
 package enoch.evotree.evotreebackend.controller;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 import enoch.evotree.evotreebackend.service.NodeService;
 import enoch.evotree.evotreebackend.service.constants.NodeConstant;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +36,26 @@ public class NodeController {
     @GetMapping("/nodes")
     public List<Node> getAllNodes() {
         return nodeService.getAllNodes();
+    }
+
+    @GetMapping("/experimental/nodes")
+    public ResponseEntity<String> getParentNodesWithChildren() {
+        List<Node> parentNodes = nodeService.getParentNodes();
+
+        JsonArray jsonArray = new JsonArray();
+
+        parentNodes.forEach(node -> {
+            JsonObject jsonObject = createJsonObject(node);
+
+            jsonArray.add(jsonObject);
+        });
+
+        // Set response entity
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+
+        return ResponseEntity.ok().headers(headers).body(jsonArray.toString());
     }
 
     @PostMapping("/nodes/new")
@@ -99,5 +123,20 @@ public class NodeController {
         throws NoSuchNodeException {
 
         return nodeService.createChildNode(newChildNode.getName(), id);
+    }
+
+    private JsonObject createJsonObject(Node parentNode) {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("id", parentNode.getId());
+        jsonObject.addProperty("name", parentNode.getName());
+
+        Node nextChildNode = nodeService.fetchNode(parentNode.getChildNodeId());
+
+        if (nextChildNode != null) {
+            jsonObject.add("child-node", createJsonObject(nextChildNode));
+        }
+
+        return jsonObject;
     }
 }
