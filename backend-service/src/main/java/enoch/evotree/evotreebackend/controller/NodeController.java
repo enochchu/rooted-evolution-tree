@@ -84,4 +84,12 @@ public class NodeController {
 
         return nodeService.getNode(node.getChildNodeId());
     }
+
+    /* Add Child Node */
+    @PostMapping("/nodes/{id}/child-node/new")
+    public Node createNewChildNode(@PathVariable long id, Node newChildNode)
+        throws NoSuchNodeException {
+
+        return nodeService.createChildNode(newChildNode.getName(), id);
+    }
 }
