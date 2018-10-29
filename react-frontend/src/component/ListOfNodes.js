@@ -77,7 +77,9 @@ class ListOfNodes extends Component {
             let pk = item.getAttribute("data-pk");
 
             if (action === "delete") {
-                this._handleDelete(pk);
+                if (window.confirm("Are you sure?")) {
+                    this._handleDelete(pk);
+                }
             }
             else if (action === "create-child") {
                 // TODO This can probably DRY. Refactor after feature complete.
