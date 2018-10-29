@@ -40,6 +40,18 @@ class ListOfNodes extends Component {
         input.value = "";
     }
 
+    _handleCreateChild(pk, inputValue) {
+        fetch("http://localhost:8080/nodes/" + pk +"/child-node/new", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "name": inputValue
+            })
+        }).then(() => this._refreshData());
+    }
+
     _handleClick(event) {
         let button = event.target.closest("button");
 
@@ -51,6 +63,19 @@ class ListOfNodes extends Component {
 
             if (action === "delete") {
                 this._handleDelete(pk);
+            }
+            else if (action === "create-child") {
+                let container = event.target.closest("span");
+                let input = container.querySelector("input");
+                let inputValue = input.value;
+
+                if (inputValue === "") {
+                    return;
+                }
+
+                this._handleCreateChild(pk, inputValue);
+
+                input.value = "";
             }
         }
     }
