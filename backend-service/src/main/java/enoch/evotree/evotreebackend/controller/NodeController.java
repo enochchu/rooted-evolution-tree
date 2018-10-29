@@ -34,12 +34,13 @@ public class NodeController {
 
     /* Nodes */
 
-    @GetMapping("/nodes")
+    @Deprecated
+    @GetMapping("/old/nodes")
     public List<Node> getAllNodes() {
         return nodeService.getAllNodes();
     }
 
-    @GetMapping("/experimental/nodes")
+    @GetMapping("/nodes")
     public ResponseEntity<String> getParentNodesWithChildren() {
         List<Node> parentNodes = nodeService.getParentNodes();
 

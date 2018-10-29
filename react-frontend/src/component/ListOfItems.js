@@ -120,7 +120,7 @@ class ListOfItems extends Component {
     }
 
     _refreshData() {
-        fetch('http://localhost:8080/experimental/nodes')
+        fetch('http://localhost:8080/nodes')
             .then(response => response.json())
             .then(
                 data => this.setState(
