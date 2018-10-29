@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ActionButton from './ActionButton';
+import Item from './Item'
 
-class ListOfNodes extends Component {
+class ListOfItems extends Component {
     constructor(props) {
         super(props);
 
@@ -120,7 +120,7 @@ class ListOfNodes extends Component {
     }
 
     _refreshData() {
-        fetch('http://localhost:8080/nodes')
+        fetch('http://localhost:8080/experimental/nodes')
             .then(response => response.json())
             .then(
                 data => this.setState(
@@ -132,18 +132,32 @@ class ListOfNodes extends Component {
 
     }
 
+    renderItems(data) {
+        if (data.hasOwnProperty("child-node")) {
+            return (
+                <span>
+                    <Item data={data} handleClick={this._handleClick} />
+
+                    <ul>
+                        {
+                            this.renderItems(data["child-node"])
+                        }
+                    </ul>
+                </span>
+            )
+        }
+
+        return (
+            <Item data={data} handleClick={this._handleClick} />
+        )
+    }
+
     render() {
         return (
             <div>
                 <ul>
                     {
-                        this.state.nodes.map(data => (
-                            <li key={data.id} data-pk={ data.id }>
-                                { data.name }
-
-                                <ActionButton handleOnClick={this._handleClick} />
-                            </li>
-                        ))
+                        this.state.nodes.map(data => this.renderItems(data))
                     }
                 </ul>
 
@@ -156,4 +170,4 @@ class ListOfNodes extends Component {
     }
 }
 
-export default ListOfNodes;
+export default ListOfItems;
