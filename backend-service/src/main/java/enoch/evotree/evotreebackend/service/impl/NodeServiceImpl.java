@@ -1,5 +1,6 @@
 package enoch.evotree.evotreebackend.service.impl;
 
+import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 import enoch.evotree.evotreebackend.repository.NodeRepository;
@@ -9,7 +10,6 @@ import enoch.evotree.evotreebackend.service.constants.NodeConstant;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,8 +80,15 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public Node deleteNode(long id) throws NoSuchNodeException {
+    public Node deleteNode(long id) throws CannotDeleteRootNodeException, NoSuchNodeException {
+
         Node node = getNode(id);
+
+        // According to one of the rules, we cannot delete a root node
+        // For now can we define a root node as one without a head?
+        if (node.getParentNodeId() == NodeConstant.NO_NODE) {
+            throw new CannotDeleteRootNodeException();
+        }
 
         // It's pretty destructive. If this is a real thing, there should be
         // a way to roll back if fails.

@@ -2,6 +2,7 @@ package enoch.evotree.evotreebackend.controller;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 import enoch.evotree.evotreebackend.service.NodeService;
@@ -81,7 +82,7 @@ public class NodeController {
 
     @DeleteMapping("/nodes/{id}/delete")
     public Node deleteNodeById(@PathVariable long id)
-        throws NoSuchNodeException {
+            throws CannotDeleteRootNodeException, NoSuchNodeException {
 
         return nodeService.deleteNode(id);
     }

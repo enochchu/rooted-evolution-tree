@@ -1,10 +1,9 @@
 package enoch.evotree.evotreebackend.service;
 
+import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
 import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public interface NodeService {
@@ -16,7 +15,7 @@ public interface NodeService {
 
     Node getNode(long id) throws NoSuchNodeException;
 
-    Node deleteNode(long id) throws NoSuchNodeException;
+    Node deleteNode(long id) throws CannotDeleteRootNodeException, NoSuchNodeException;
 
     Node fetchNode(long id);
 
