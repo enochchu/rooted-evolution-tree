@@ -19,13 +19,21 @@ public class BackendServiceCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         /* Set up some dummy data */
 
-        Node parentNode = nodeService.createNode("ParentNode");
+        Node node1 = nodeService.createNode("AMOEBA");
 
-        Node childNode = nodeService.createChildNode(
-            "ChildNode", parentNode.getId());
+        Node node2 = nodeService.createChildNode(
+            "ALGAE", node1.getId());
 
-        Node grandChildrenNode = nodeService.createChildNode(
-            "GrandChildren", childNode.getId());
+        Node node3 = nodeService.createNode("LIZARD");
+
+        Node node4 = nodeService.createChildNode(
+            "SHREW", node3.getId());
+
+        Node node5 = nodeService.createChildNode(
+            "LEMUR", node4.getId());
+
+        Node node6 = nodeService.createChildNode(
+            "APE", node5.getId());
     }
 
 }
