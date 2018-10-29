@@ -1,3 +1,7 @@
 .App .action {
     margin-left: 2.5em;
 }
+
+.App .add {
+    padding-left: 1em;
+}
