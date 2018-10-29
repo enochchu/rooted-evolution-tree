@@ -40,6 +40,9 @@ public class NodeController {
         return nodeService.getAllNodes();
     }
 
+    /*
+     * FIXME Does not show parent nodes with two childrens
+     */
     @GetMapping("/nodes")
     public ResponseEntity<String> getParentNodesWithChildren() {
         List<Node> parentNodes = nodeService.getParentNodes();
