@@ -37,7 +37,7 @@ public class NodeServiceImpl implements NodeService {
 
         Node parentNode = getNode(parentNodeId);
 
-        Node childNode = createNode("ChildNode");
+        Node childNode = createNode(name);
 
         childNode.setParentNodeId(parentNode.getId());
 
