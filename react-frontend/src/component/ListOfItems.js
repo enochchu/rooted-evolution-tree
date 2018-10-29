@@ -73,7 +73,7 @@ class ListOfItems extends Component {
         if (button) {
             var action = button.className;
 
-            let item = event.target.closest("li");
+            let item = event.target.closest("span.item");
             let pk = item.getAttribute("data-pk");
 
             if (action === "delete") {
@@ -135,7 +135,7 @@ class ListOfItems extends Component {
     renderItems(data) {
         if (data.hasOwnProperty("child-node")) {
             return (
-                <span>
+                <li key={data.pk}>
                     <Item data={data} handleClick={this._handleClick} />
 
                     <ul>
@@ -143,12 +143,14 @@ class ListOfItems extends Component {
                             this.renderItems(data["child-node"])
                         }
                     </ul>
-                </span>
+                </li>
             )
         }
 
         return (
-            <Item data={data} handleClick={this._handleClick} />
+            <li key={data.pk}>
+                <Item data={data} handleClick={this._handleClick} />
+            </li>
         )
     }
 

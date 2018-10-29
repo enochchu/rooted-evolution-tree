@@ -10,11 +10,11 @@ class Item extends Component {
         let data = this.props.data;
 
         return (
-            <li key={data.id} data-pk={ data.id }>
+            <span className="item" data-pk={ data.id }>
                 { data.name }
 
                 <ActionButton handleOnClick={this.props.handleClick} delete={(data["parent-node-id"] !== -1)}/>
-            </li>
+            </span>
         );
     }
 }
