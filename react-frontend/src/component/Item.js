@@ -13,7 +13,7 @@ class Item extends Component {
             <li key={data.id} data-pk={ data.id }>
                 { data.name }
 
-                <ActionButton handleOnClick={this.props.handleClick} delete={(data["parent-node-id"] != -1)}/>
+                <ActionButton handleOnClick={this.props.handleClick} delete={(data["parent-node-id"] !== -1)}/>
             </li>
         );
     }
