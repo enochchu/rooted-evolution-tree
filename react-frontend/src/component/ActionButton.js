@@ -16,7 +16,9 @@ class ActionButton extends Component {
                     <button className="edit">Edit</button>
                 </span>
 
-                <button className="delete">Delete</button>
+                {
+                    (this.props.delete) ? <button className="delete">Delete</button> : ""
+                }
             </span>
         );
     }
