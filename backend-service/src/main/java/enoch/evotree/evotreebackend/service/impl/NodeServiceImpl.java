@@ -49,6 +49,11 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
+    public List<Node> getAllNodes() {
+        return (List<Node>) nodeRepository.findAll();
+    }
+
+    @Override
     public Node getNode(long id) throws NoSuchNodeException {
         Optional<Node> node = nodeRepository.findById(id);
 

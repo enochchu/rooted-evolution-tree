@@ -13,25 +13,23 @@ import java.util.List;
 public class NodeController {
 
     private NodeService nodeService;
-    private NodeRepository nodeRepository;
 
     public NodeController(
-        NodeService nodeService, NodeRepository nodeRepository) {
+        NodeService nodeService) {
 
         this.nodeService = nodeService;
-        this.nodeRepository = nodeRepository;
     }
 
     /* Nodes */
 
     @GetMapping("/nodes")
     public List<Node> getAllNodes() {
-        return (List<Node>)nodeRepository.findAll();
+        return nodeService.getAllNodes();
     }
 
     @PostMapping("/nodes/new")
     public Node createParentNode(@RequestBody Node node) {
-        return nodeRepository.save(node);
+        return nodeService.createNode(node.getName());
     }
 
     /* Individual Nodes */

@@ -16,5 +16,9 @@ public interface NodeService {
 
     Node deleteNode(long id) throws NoSuchNodeException;
 
+    Node fetchNode(long id);
+
     Node updateNode(long id, String name) throws NoSuchNodeException;
+
+    List<Node> getAllNodes();
 }

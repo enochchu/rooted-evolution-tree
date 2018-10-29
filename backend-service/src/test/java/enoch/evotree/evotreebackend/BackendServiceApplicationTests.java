@@ -64,7 +64,6 @@ public class BackendServiceApplicationTests {
             "ChildNode", parentNode.getId());
 
 	    Node previousChildNode = childNode;
-	    Node testDeleteChildNode = null;
 
 	    for (int i = 0; i < 10; i++) {
             Node newChildNode = nodeService.createChildNode(
