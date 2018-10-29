@@ -131,6 +131,8 @@ public class NodeController {
 
         jsonObject.addProperty("id", parentNode.getId());
         jsonObject.addProperty("name", parentNode.getName());
+        jsonObject.addProperty(
+            "parent-node-id", parentNode.getParentNodeId());
 
         Node nextChildNode = nodeService.fetchNode(parentNode.getChildNodeId());
 
