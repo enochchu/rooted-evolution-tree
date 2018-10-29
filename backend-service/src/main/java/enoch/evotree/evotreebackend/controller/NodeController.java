@@ -4,6 +4,7 @@ import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
 import enoch.evotree.evotreebackend.model.Node;
 import enoch.evotree.evotreebackend.service.NodeService;
 import enoch.evotree.evotreebackend.service.constants.NodeConstant;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class NodeController {
 
