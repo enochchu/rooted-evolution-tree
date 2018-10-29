@@ -10,6 +10,12 @@ class ActionButton extends Component {
                     <button className="create-child">Create Child</button>
                 </span>
 
+                <span>
+                    <input />
+
+                    <button className="edit">Edit</button>
+                </span>
+
                 <button className="delete">Delete</button>
             </span>
         );

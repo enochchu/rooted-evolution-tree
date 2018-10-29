@@ -19,6 +19,7 @@ class ListOfNodes extends Component {
     }
 
     _handleAdd(event) {
+        // TODO This can probably DRY. refactor after feature complete
         let container = event.target.closest("div");
         let input = container.querySelector("input");
         let inputValue = input.value;
@@ -41,8 +42,22 @@ class ListOfNodes extends Component {
     }
 
     _handleCreateChild(pk, inputValue) {
+        // TODO This can probably DRY. Refactor after feature complete.
         fetch("http://localhost:8080/nodes/" + pk +"/child-node/new", {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "name": inputValue
+            })
+        }).then(() => this._refreshData());
+    }
+
+    _handleEdit(pk, inputValue) {
+        // TODO This can probably DRY. Refactor after feature complete.
+        fetch("http://localhost:8080/nodes/" + pk +"/update", {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -65,6 +80,7 @@ class ListOfNodes extends Component {
                 this._handleDelete(pk);
             }
             else if (action === "create-child") {
+                // TODO This can probably DRY. Refactor after feature complete.
                 let container = event.target.closest("span");
                 let input = container.querySelector("input");
                 let inputValue = input.value;
@@ -76,6 +92,21 @@ class ListOfNodes extends Component {
                 this._handleCreateChild(pk, inputValue);
 
                 input.value = "";
+            }
+            else if (action === "edit") {
+                // TODO This can probably DRY. refactor after feature complete
+                let container = event.target.closest("span");
+                let input = container.querySelector("input");
+                let inputValue = input.value;
+
+                if (inputValue === "") {
+                    return;
+                }
+
+                this._handleEdit(pk, inputValue);
+
+                input.value = "";
+
             }
         }
     }
