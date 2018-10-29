@@ -55,4 +55,49 @@ public class BackendServiceApplicationTests {
         assertEquals(parentNode.getId(), childNode.getParentNodeId());
     }
 
+    @Test
+    public void shouldAbleToDeleteNodeAndCleanUp()
+        throws NoSuchNodeException {
+
+	    Node parentNode = nodeService.createNode("ParentNode");
+	    Node childNode = nodeService.createChildNode(
+            "ChildNode", parentNode.getId());
+
+	    Node previousChildNode = childNode;
+	    Node testDeleteChildNode = null;
+
+	    for (int i = 0; i < 10; i++) {
+            Node newChildNode = nodeService.createChildNode(
+                "ChildNode " + Integer.toString(i),
+                previousChildNode.getId());
+
+            previousChildNode = newChildNode;
+        }
+
+        long testDeleteNodeId = previousChildNode.getId() - 5;
+
+        Node testDeleteNode = nodeService.fetchNode(testDeleteNodeId);
+
+        long testDeleteParentNodeId = testDeleteNode.getParentNodeId();
+        long testDeleteChildNodeId = testDeleteNode.getChildNodeId();
+
+        nodeService.deleteNode(testDeleteNodeId);
+
+        // The deletedChildNode should be deleted.
+        Node deletedNode = nodeService.fetchNode(testDeleteNodeId);
+
+        assertThat(deletedNode).isNull();
+
+        // All children should be deleted.
+        // Test is a bit broken. Should test for all children.
+        Node deletedChildNode = nodeService.fetchNode(testDeleteChildNodeId);
+
+        assertThat(deletedChildNode).isNull();
+
+        // All parents should be preserved.
+        Node deletedParentNode = nodeService.fetchNode(testDeleteParentNodeId);
+
+        assertThat(deletedParentNode).isNotNull();
+    }
+
 }

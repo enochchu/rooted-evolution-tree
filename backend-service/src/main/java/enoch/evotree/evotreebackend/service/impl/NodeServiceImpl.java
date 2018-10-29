@@ -8,6 +8,8 @@ import enoch.evotree.evotreebackend.service.constants.NodeConstant;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -70,9 +72,36 @@ public class NodeServiceImpl implements NodeService {
     public Node deleteNode(long id) throws NoSuchNodeException {
         Node node = getNode(id);
 
-        nodeRepository.delete(node);
+        // It's pretty destructive. If this is a real thing, there should be
+        // a way to roll back if fails.
+        List<Long> deleteIdList = new ArrayList<>();
+
+        deleteIdList.add(node.getId());
+
+        Node nextNode = fetchNode(node.getChildNodeId());
+
+        while(nextNode != null) {
+            deleteIdList.add(nextNode.getId());
+
+            nextNode = fetchNode(nextNode.getChildNodeId());
+        }
+
+        deleteIdList.stream().forEach(
+            deleteId -> nodeRepository.deleteById(deleteId));
 
         return node;
+    }
+
+    @Override
+    public Node fetchNode(long id) {
+        Optional<Node> node = nodeRepository.findById(id);
+
+        if (node.isEmpty()) {
+            // Won't kick off exception
+            return null;
+        }
+
+        return node.get();
     }
 
 }
