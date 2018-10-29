@@ -94,7 +94,8 @@ public class NodeController {
 
     /* Add Child Node */
     @PostMapping("/nodes/{id}/child-node/new")
-    public Node createNewChildNode(@PathVariable long id, Node newChildNode)
+    public Node createNewChildNode(
+            @PathVariable long id, @RequestBody Node newChildNode)
         throws NoSuchNodeException {
 
         return nodeService.createChildNode(newChildNode.getName(), id);
