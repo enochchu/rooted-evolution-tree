@@ -58,7 +58,7 @@ public class NodeServiceImpl implements NodeService {
     public Node getNode(long id) throws NoSuchNodeException {
         Optional<Node> node = nodeRepository.findById(id);
 
-        if (node.isEmpty()) {
+        if (!node.isPresent()) {
             throw new NoSuchNodeException();
         }
 
@@ -114,7 +114,7 @@ public class NodeServiceImpl implements NodeService {
     public Node fetchNode(long id) {
         Optional<Node> node = nodeRepository.findById(id);
 
-        if (node.isEmpty()) {
+        if (!node.isPresent()) {
             // Won't kick off exception
             return null;
         }
