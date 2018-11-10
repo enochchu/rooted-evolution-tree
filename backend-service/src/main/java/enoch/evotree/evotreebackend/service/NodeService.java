@@ -19,7 +19,9 @@ public interface NodeService {
 
     Node fetchNode(long id);
 
-    List<Node> getParentNodes();
+    List<Node> getNodesByParentNodeId(long parentNodeId);
+
+    List<Node> getRootNodes();
 
     Node updateNode(long id, String name) throws NoSuchNodeException;
 

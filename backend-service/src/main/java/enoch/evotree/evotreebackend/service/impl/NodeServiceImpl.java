@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * FIXME The API is getting narly
+ */
+
 @Service
 public class NodeServiceImpl implements NodeService {
 
@@ -66,8 +70,13 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public List<Node> getParentNodes() {
-        return nodeRepository.findAllByParentNodeId(NodeConstant.NO_NODE);
+    public List<Node> getNodesByParentNodeId(long parentNodeId) {
+        return nodeRepository.findAllByParentNodeId(parentNodeId);
+    }
+
+    @Override
+    public List<Node> getRootNodes() {
+        return getNodesByParentNodeId(NodeConstant.NO_NODE);
     }
 
     @Override

@@ -45,15 +45,11 @@ public class NodeController {
      */
     @GetMapping("/nodes")
     public ResponseEntity<String> getParentNodesWithChildren() {
-        List<Node> parentNodes = nodeService.getParentNodes();
+        List<Node> parentNodes = nodeService.getRootNodes();
 
         JsonArray jsonArray = new JsonArray();
 
-        parentNodes.forEach(node -> {
-            JsonObject jsonObject = createJsonObject(node);
-
-            jsonArray.add(jsonObject);
-        });
+        parentNodes.forEach(node -> jsonArray.add(createJsonObject(node)));
 
         // Set response entity
         HttpHeaders headers = new HttpHeaders();
@@ -138,10 +134,17 @@ public class NodeController {
         jsonObject.addProperty(
             "parent-node-id", parentNode.getParentNodeId());
 
-        Node nextChildNode = nodeService.fetchNode(parentNode.getChildNodeId());
+        List<Node> nextChildNodes = nodeService.getNodesByParentNodeId(
+            parentNode.getId());
 
-        if (nextChildNode != null) {
-            jsonObject.add("child-node", createJsonObject(nextChildNode));
+        for (Node nextChildNode : nextChildNodes) {
+            long nextChildNodeId = nextChildNode.getId();
+
+            if (nextChildNode != null) {
+                jsonObject.add(
+                    "child-node-" + String.valueOf(nextChildNodeId),
+                    createJsonObject(nextChildNode));
+            }
         }
 
         return jsonObject;
