@@ -133,23 +133,23 @@ class ListOfItems extends Component {
     }
 
     renderItems(data) {
-        if (data.hasOwnProperty("child-node")) {
-            return (
-                <li key={data.pk}>
-                    <Item data={data} handleClick={this._handleClick} />
+        const dataKeys = Object.keys(data);
 
-                    <ul>
-                        {
-                            this.renderItems(data["child-node"])
-                        }
-                    </ul>
-                </li>
-            )
+        const childNodes = dataKeys.filter(dataKey => dataKey.includes("child-node"));
+
+        const uniqueKey = new Date().getTime();
+
+        let childNodesList;
+
+        if (childNodes.length > 0) {
+            childNodesList = <ul>{childNodes.map(childNodeKey => this.renderItems(data[childNodeKey]))}</ul>;
         }
 
         return (
-            <li key={data.pk}>
+            <li key={uniqueKey + data.name + data.id}>
                 <Item data={data} handleClick={this._handleClick} />
+
+                {childNodesList}
             </li>
         )
     }
