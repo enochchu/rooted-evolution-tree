@@ -47,7 +47,7 @@ RUN java -version
 #
 # Copy files
 #
-COPY ./backend-service/backend-service-0.0.1-SNAPSHOT.jar ./app/backend-service-0.0.1-SNAPSHOT.jar
+COPY ./backend-service/evolutiontree-backend-service-0.0.1-SNAPSHOT.jar ./app/evolutiontree-backend-service-0.0.1-SNAPSHOT.jar
 COPY ./backend-service/start ./app/start
 WORKDIR "./app"
 
