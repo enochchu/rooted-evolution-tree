@@ -1,17 +1,17 @@
-package enoch.evotree.evotreebackend;
+package enoch.evolutiontree;
 
-import enoch.evotree.evotreebackend.model.Node;
-import enoch.evotree.evotreebackend.service.NodeService;
+import enoch.evolutiontree.model.Node;
+import enoch.evolutiontree.service.NodeService;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BackendServiceCommandLineRunner implements CommandLineRunner {
+public class EvolutionTreeCommandLineRunner implements CommandLineRunner {
 
     private NodeService nodeService;
 
-    public BackendServiceCommandLineRunner(NodeService nodeService) {
+    public EvolutionTreeCommandLineRunner(NodeService nodeService) {
         this.nodeService = nodeService;
     }
 

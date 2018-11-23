@@ -1,4 +1,4 @@
-package enoch.evotree.evotreebackend.exception;
+package enoch.evolutiontree.exception;
 
 public class NoSuchNodeException extends Exception {
 

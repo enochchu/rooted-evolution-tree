@@ -1,4 +1,4 @@
-package enoch.evotree.evotreebackend.service.constants;
+package enoch.evolutiontree.service.constants;
 
 public class NodeConstant {
 

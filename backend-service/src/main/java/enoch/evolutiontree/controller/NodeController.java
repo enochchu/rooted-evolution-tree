@@ -1,12 +1,12 @@
-package enoch.evotree.evotreebackend.controller;
+package enoch.evolutiontree.controller;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
-import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
-import enoch.evotree.evotreebackend.model.Node;
-import enoch.evotree.evotreebackend.service.NodeService;
-import enoch.evotree.evotreebackend.service.constants.NodeConstant;
+import enoch.evolutiontree.model.Node;
+import enoch.evolutiontree.service.NodeService;
+import enoch.evolutiontree.service.constants.NodeConstant;
+import enoch.evolutiontree.exception.CannotDeleteRootNodeException;
+import enoch.evolutiontree.exception.NoSuchNodeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

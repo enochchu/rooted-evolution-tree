@@ -1,4 +1,4 @@
-package enoch.evotree.evotreebackend.model;
+package enoch.evolutiontree.model;
 
 import javax.persistence.*;
 

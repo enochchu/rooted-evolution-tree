@@ -1,8 +1,8 @@
-package enoch.evotree.evotreebackend.service;
+package enoch.evolutiontree.service;
 
-import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
-import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
-import enoch.evotree.evotreebackend.model.Node;
+import enoch.evolutiontree.exception.CannotDeleteRootNodeException;
+import enoch.evolutiontree.exception.NoSuchNodeException;
+import enoch.evolutiontree.model.Node;
 
 import java.util.List;
 

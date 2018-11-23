@@ -1,13 +1,13 @@
-package enoch.evotree.evotreebackend;
+package enoch.evolutiontree;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendServiceApplication {
+public class EvolutionTreeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackendServiceApplication.class, args);
+		SpringApplication.run(EvolutionTreeApplication.class, args);
 	}
 
 }

@@ -1,6 +1,6 @@
-package enoch.evotree.evotreebackend.repository;
+package enoch.evolutiontree.repository;
 
-import enoch.evotree.evotreebackend.model.Node;
+import enoch.evolutiontree.model.Node;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

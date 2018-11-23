@@ -1,10 +1,10 @@
-package enoch.evotree.evotreebackend;
+package enoch.evolutiontree;
 
-import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
-import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
-import enoch.evotree.evotreebackend.model.Node;
-import enoch.evotree.evotreebackend.repository.NodeRepository;
-import enoch.evotree.evotreebackend.service.NodeService;
+import enoch.evolutiontree.model.Node;
+import enoch.evolutiontree.service.NodeService;
+import enoch.evolutiontree.exception.CannotDeleteRootNodeException;
+import enoch.evolutiontree.exception.NoSuchNodeException;
+import enoch.evolutiontree.repository.NodeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BackendServiceApplicationTests {
+public class EvolutionTreeApplicationTests {
 
     @Autowired
     private NodeRepository nodeRepository;

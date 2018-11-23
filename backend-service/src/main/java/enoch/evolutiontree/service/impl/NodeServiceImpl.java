@@ -1,11 +1,11 @@
-package enoch.evotree.evotreebackend.service.impl;
+package enoch.evolutiontree.service.impl;
 
-import enoch.evotree.evotreebackend.exception.CannotDeleteRootNodeException;
-import enoch.evotree.evotreebackend.exception.NoSuchNodeException;
-import enoch.evotree.evotreebackend.model.Node;
-import enoch.evotree.evotreebackend.repository.NodeRepository;
-import enoch.evotree.evotreebackend.service.NodeService;
-import enoch.evotree.evotreebackend.service.constants.NodeConstant;
+import enoch.evolutiontree.exception.CannotDeleteRootNodeException;
+import enoch.evolutiontree.exception.NoSuchNodeException;
+import enoch.evolutiontree.model.Node;
+import enoch.evolutiontree.repository.NodeRepository;
+import enoch.evolutiontree.service.NodeService;
+import enoch.evolutiontree.service.constants.NodeConstant;
 
 import org.springframework.stereotype.Service;
 
